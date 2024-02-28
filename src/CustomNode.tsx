@@ -10,6 +10,9 @@ interface CustomNodeProps {
 }
 
 const CustomNode: React.FC<CustomNodeProps> = ({ data }) => {
+  const isImageUrl = (url: string) => {
+    return /\.(jpg|jpeg|png|webp|avif|gif|svg)$/.test(url);
+  };
   return (
     <div className="px-4 py-2 shadow-md rounded-md bg-white border-2 border-stone-400">
       <div className="flex">
@@ -22,7 +25,12 @@ const CustomNode: React.FC<CustomNodeProps> = ({ data }) => {
         /> */}
         <div className="ml-2">
           <div className="text-lg font-bold">{data.name}</div>
-          <div className="text-gray-500">{data.job}</div>
+          {/* Conditional rendering based on data.job being an image URL or text */}
+          {isImageUrl(data.job) ? (
+            <img src={data.job} alt={data.name} width="100" />
+          ) : (
+            <div className="text-gray-500">{data.job}</div>
+          )}
         </div>
       </div>
 

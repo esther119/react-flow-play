@@ -59,7 +59,7 @@ function App() {
       position: node.position,
       data: {
         name: `Baby of ${node.data.name} and ${target?.data.name}`,
-        job: "Baby",
+        job: "public/images/royga.png",
         emoji: "👶🏻",
       },
     };
