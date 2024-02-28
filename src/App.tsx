@@ -1,10 +1,8 @@
 import ReactFlow, {
   // Controls,
   // Background,
-  MiniMap,
   useNodesState,
   useEdgesState,
-  NodeResizer,
 } from "reactflow";
 
 import "reactflow/dist/style.css";
@@ -36,20 +34,20 @@ function App() {
   const [edges, , onEdgesChange] = useEdgesState(initEdges);
 
   return (
-    <ReactFlow
-      nodes={nodes}
-      onNodesChange={onNodesChange}
-      edges={edges}
-      onEdgesChange={onEdgesChange}
-      panOnScroll
-      // selectionOnDrag
-      fitView
-    >
-      {/* <Background /> */}
-      {/* <Controls /> */}
-      <MiniMap />
-      <NodeResizer />
-    </ReactFlow>
+    <div className="App">
+      {/* <ReactFlow
+        nodes={nodes}
+        onNodesChange={onNodesChange}
+        edges={edges}
+        onEdgesChange={onEdgesChange}
+        panOnScroll
+        // selectionOnDrag
+        fitView
+      >
+        <MiniMap />
+        <NodeResizer />
+      </ReactFlow> */}
+    </div>
   );
 }
 
