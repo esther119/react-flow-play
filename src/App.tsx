@@ -40,7 +40,7 @@ function App() {
         centerY < n.position.y + n.height! &&
         n.id !== node.id
     );
-    console.log("Potential target:", targetNode);
+    // console.log("Potential target:", targetNode);
     setTarget(targetNode ?? null);
   };
 
@@ -74,15 +74,28 @@ function App() {
       );
     });
 
-    const sourceId = newNode.id; // ID of the source node
-    const targetId = "a"; // ID of the target node, assumed to be defined earlier
+    // swapping edges to the shortest side
+    let sourceId = newNode.id; // ID of the source node
+    let targetId = "a"; // ID of the target node
+    const targetNode = nodes.find((node) => node.id === targetId);
 
+    // Ensure targetNode and its position are valid before comparing
+    if (
+      targetNode &&
+      targetNode.position &&
+      newNode.position &&
+      newNode.position.x > targetNode.position.x
+    ) {
+      // Swap sourceId and targetId using destructuring assignment
+      [sourceId, targetId] = [targetId, sourceId];
+    }
+
+    console.log(targetNode);
     // Define the new edge
     const newEdge = {
       id: `${sourceId}-${targetId}`,
       source: sourceId,
       target: targetId,
-      type: "smoothstep",
     };
 
     // Update the edges state to include the new edge
