@@ -58,9 +58,9 @@ function App() {
       type: "custom",
       position: node.position,
       data: {
-        name: `Baby of ${node.data.name} and ${target?.data.name}`,
-        job: "public/images/royga.png",
-        emoji: "👶🏻",
+        name: "Mixing...",
+        job: "",
+        emoji: "🧪",
       },
     };
     console.log("New node:", newNode.id);
@@ -73,6 +73,39 @@ function App() {
         (n) => n.id !== node.id && (!target || n.id !== target.id)
       );
     });
+
+    const sourceId = newNode.id; // ID of the source node
+    const targetId = "a"; // ID of the target node, assumed to be defined earlier
+
+    // Define the new edge
+    const newEdge = {
+      id: `${sourceId}-${targetId}`,
+      source: sourceId,
+      target: targetId,
+      type: "smoothstep",
+    };
+
+    // Update the edges state to include the new edge
+    setEdges((eds) => [...eds, newEdge]);
+
+    // Set a timeout to change the new node's name after 5 seconds
+    setTimeout(() => {
+      setNodes((currentNodes) =>
+        currentNodes.map((n) => {
+          if (n.id === newNode.id) {
+            return {
+              ...n,
+              data: {
+                ...n.data,
+                name: `Baby of ${node.data.name} and ${target?.data.name}`,
+                job: "public/images/royga.png",
+              },
+            };
+          }
+          return n;
+        })
+      );
+    }, 3000);
     setTarget(null);
     dragRef.current = null;
   };
