@@ -48,13 +48,31 @@ function App() {
     // const nodeColor = node.data.label;
     // const targetColor = target?.data.label;
     // const id = getId();
-
+    if (!target) {
+      setTarget(null);
+      dragRef.current = null;
+      return;
+    }
     const newNode = {
-      id: "10", // Assuming you want to set an ID for the node
+      id: node.id + "_" + target?.id, // Assuming you want to set an ID for the node
+      type: "custom",
       position: node.position,
-      data: { name: `Node 10`, job: "a new node", emoji: "👋🏻" },
+      data: {
+        name: `Baby of ${node.data.name} and ${target?.data.name}`,
+        job: "Baby",
+        emoji: "👶🏻",
+      },
     };
-    setNodes((nds) => nds.concat(newNode));
+    console.log("New node:", newNode.id);
+    setNodes((nds) => {
+      // Add the new node first
+      const nodesWithNew = nds.concat(newNode);
+
+      // Then remove both the node and the target node
+      return nodesWithNew.filter(
+        (n) => n.id !== node.id && (!target || n.id !== target.id)
+      );
+    });
     setTarget(null);
     dragRef.current = null;
   };
