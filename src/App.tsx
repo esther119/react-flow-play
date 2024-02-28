@@ -5,20 +5,18 @@ import ReactFlow, {
   NodeResizer,
   useNodesState,
   useEdgesState,
-  useReactFlow,
 } from "reactflow";
 
 import CustomNode from "./CustomNode";
 import "reactflow/dist/style.css";
 import { initEdges, initNodes } from "./data";
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 
 const nodeTypes = {
   custom: CustomNode,
 };
 
 function App() {
-  // const { screenToFlowPosition } = useReactFlow();
   const [nodes, setNodes, onNodesChange] = useNodesState(initNodes);
   const [edges, setEdges, onEdgesChange] = useEdgesState(initEdges);
 
@@ -53,20 +51,13 @@ function App() {
 
     const newNode = {
       id: "10", // Assuming you want to set an ID for the node
-      position: {
-        x: 1000,
-        y: 1000,
-      },
+      position: node.position,
       data: { name: `Node 10`, job: "a new node", emoji: "👋🏻" },
     };
     setNodes((nds) => nds.concat(newNode));
     setTarget(null);
     dragRef.current = null;
   };
-
-  // useEffect(() => {
-  //   console.log("Nodes:", nodes);
-  // }, [target, nodes]);
 
   return (
     <ReactFlow

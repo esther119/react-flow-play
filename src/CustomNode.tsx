@@ -16,6 +16,10 @@ const CustomNode: React.FC<CustomNodeProps> = ({ data }) => {
         <div className="rounded-full w-12 h-12 flex justify-center items-center bg-gray-100">
           {data.emoji}
         </div>
+        {/* <img
+          src="https://github.com/esther119/AI-spanish-flashcard-generator/blob/main/media/poer.png?raw=true"
+          width="100"
+        /> */}
         <div className="ml-2">
           <div className="text-lg font-bold">{data.name}</div>
           <div className="text-gray-500">{data.job}</div>
