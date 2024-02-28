@@ -1,6 +1,5 @@
 import ReactFlow, {
-  // Controls,
-  // Background,
+  Panel,
   MiniMap,
   NodeResizer,
   useNodesState,
@@ -9,34 +8,11 @@ import ReactFlow, {
 
 import CustomNode from "./CustomNode";
 import "reactflow/dist/style.css";
+import { initEdges, initNodes } from "./data";
 
 const nodeTypes = {
   custom: CustomNode,
 };
-
-const initNodes = [
-  {
-    id: "a",
-    type: "custom",
-    data: { name: "Esther", job: "Me", emoji: "🐥" },
-    position: { x: 250, y: 0 },
-  },
-  {
-    id: "b",
-    type: "custom",
-    data: { name: "Tianhui", job: "Single mom", emoji: "🏃🏻‍♀️" },
-    position: { x: 100, y: 100 },
-  },
-];
-
-const initEdges = [
-  {
-    id: "a-b",
-    source: "a",
-    target: "b",
-    animated: true,
-  },
-];
 
 function App() {
   const [nodes, , onNodesChange] = useNodesState(initNodes);
@@ -53,6 +29,7 @@ function App() {
       fitView
       nodeTypes={nodeTypes}
     >
+      <Panel position="top-left"> Create babies for my friends </Panel>
       <MiniMap />
       <NodeResizer />
     </ReactFlow>
