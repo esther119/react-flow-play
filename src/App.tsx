@@ -1,21 +1,30 @@
 import ReactFlow, {
   // Controls,
   // Background,
+  MiniMap,
+  NodeResizer,
   useNodesState,
   useEdgesState,
 } from "reactflow";
 
+import CustomNode from "./CustomNode";
 import "reactflow/dist/style.css";
+
+const nodeTypes = {
+  custom: CustomNode,
+};
 
 const initNodes = [
   {
     id: "a",
-    data: { label: "Node K" },
+    type: "custom",
+    data: { name: "Esther", job: "Me", emoji: "🐥" },
     position: { x: 250, y: 0 },
   },
   {
     id: "b",
-    data: { label: "Node D" },
+    type: "custom",
+    data: { name: "Tianhui", job: "Single mom", emoji: "🏃🏻‍♀️" },
     position: { x: 100, y: 100 },
   },
 ];
@@ -34,20 +43,19 @@ function App() {
   const [edges, , onEdgesChange] = useEdgesState(initEdges);
 
   return (
-    <div className="App">
-      {/* <ReactFlow
-        nodes={nodes}
-        onNodesChange={onNodesChange}
-        edges={edges}
-        onEdgesChange={onEdgesChange}
-        panOnScroll
-        // selectionOnDrag
-        fitView
-      >
-        <MiniMap />
-        <NodeResizer />
-      </ReactFlow> */}
-    </div>
+    <ReactFlow
+      nodes={nodes}
+      onNodesChange={onNodesChange}
+      edges={edges}
+      onEdgesChange={onEdgesChange}
+      panOnScroll
+      selectionOnDrag
+      fitView
+      nodeTypes={nodeTypes}
+    >
+      <MiniMap />
+      <NodeResizer />
+    </ReactFlow>
   );
 }
 
