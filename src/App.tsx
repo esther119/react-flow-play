@@ -11,6 +11,7 @@ import CustomNode from "./CustomNode";
 import "reactflow/dist/style.css";
 import { initEdges, initNodes } from "./data";
 import { useRef, useState } from "react";
+import { shortestEdges } from "./ShortestEdges";
 
 const nodeTypes = {
   custom: CustomNode,
@@ -63,7 +64,6 @@ function App() {
         emoji: "🧪",
       },
     };
-    console.log("New node:", newNode.id);
     setNodes((nds) => {
       // Add the new node first
       const nodesWithNew = nds.concat(newNode);
@@ -75,8 +75,16 @@ function App() {
     });
 
     // swapping edges to the shortest side
+    console.log("New node id:", newNode.id);
+    // swapping edges to the shortest side
     let sourceId = newNode.id; // ID of the source node
     let targetId = "a"; // ID of the target node
+    // const { newSourceId, newTargetId } = shortestEdges(
+    //   nodes,
+    //   newNode,
+    //   targetId
+    // );
+
     const targetNode = nodes.find((node) => node.id === targetId);
 
     // Ensure targetNode and its position are valid before comparing
@@ -90,7 +98,7 @@ function App() {
       [sourceId, targetId] = [targetId, sourceId];
     }
 
-    console.log(targetNode);
+    // console.log("newSourceId, newTargetId", newSourceId, newTargetId);
     // Define the new edge
     const newEdge = {
       id: `${sourceId}-${targetId}`,
@@ -112,6 +120,7 @@ function App() {
                 ...n.data,
                 name: `Baby of ${node.data.name} and ${target?.data.name}`,
                 job: "public/images/royga.png",
+                emoji: "👶",
               },
             };
           }
