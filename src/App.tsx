@@ -11,7 +11,9 @@ import CustomNode from "./CustomNode";
 import "reactflow/dist/style.css";
 import { initEdges, initNodes } from "./data";
 import { useRef, useState } from "react";
-import { shortestEdges } from "./ShortestEdges";
+import getRandomLightColor from "./randomColors";
+import findImage from "./findPhoto";
+// import { shortestEdges } from "./ShortestEdges";
 
 const nodeTypes = {
   custom: CustomNode,
@@ -62,8 +64,11 @@ function App() {
         name: "Mixing...",
         job: "",
         emoji: "🧪",
+        color: getRandomLightColor(),
       },
     };
+    console.log("New node:", newNode);
+
     setNodes((nds) => {
       // Add the new node first
       const nodesWithNew = nds.concat(newNode);
@@ -119,7 +124,7 @@ function App() {
               data: {
                 ...n.data,
                 name: `Baby of ${node.data.name} and ${target?.data.name}`,
-                job: "public/images/royga.png",
+                job: findImage(newNode.id),
                 emoji: "👶",
               },
             };

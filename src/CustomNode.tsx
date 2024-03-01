@@ -6,6 +6,7 @@ interface CustomNodeProps {
     emoji: string;
     name: string;
     job: string;
+    color: string;
   };
 }
 
@@ -13,21 +14,28 @@ const CustomNode: React.FC<CustomNodeProps> = ({ data }) => {
   const isImageUrl = (url: string) => {
     return /\.(jpg|jpeg|png|webp|avif|gif|svg)$/.test(url);
   };
+
+  const style = {
+    backgroundColor: data.color ? data.color : "bg-100", // Default color as fallback
+  };
+
   return (
-    <div className="px-4 py-2 shadow-md rounded-md bg-white border-2 border-stone-400">
+    <div className="px-4 py-2 shadow-md rounded-md border-2" style={style}>
       <div className="flex">
-        <div className="rounded-full w-12 h-12 flex justify-center items-center bg-gray-100">
+        <div
+          className={
+            "rounded-full w-12 h-12 flex justify-center items-center bg-gray-100"
+          }
+        >
           {data.emoji}
         </div>
-        {/* <img
-          src="https://github.com/esther119/AI-spanish-flashcard-generator/blob/main/media/poer.png?raw=true"
-          width="100"
-        /> */}
         <div className="ml-2">
           <div className="text-lg font-bold">{data.name}</div>
-          {/* Conditional rendering based on data.job being an image URL or text */}
+
           {isImageUrl(data.job) ? (
-            <img src={data.job} alt={data.name} width="100" />
+            <div className="flex justify-center items-center">
+              <img src={data.job} alt={data.name} className="w-32 mx-auto" />
+            </div>
           ) : (
             <div className="text-gray-500">{data.job}</div>
           )}
@@ -40,4 +48,3 @@ const CustomNode: React.FC<CustomNodeProps> = ({ data }) => {
   );
 };
 export default memo(CustomNode);
-// export default CustomNode;
