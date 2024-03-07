@@ -26,10 +26,12 @@ function App() {
   const dragRef = useRef<Node | null>(null);
   const [target, setTarget] = useState<Node | null>(null);
 
+  // @ts-expect-error TS6133: 'evt' is declared but its value is never read.
   const onNodeDragStart = (evt: React.MouseEvent, node: Node) => {
     console.log("Drag start:", node);
     dragRef.current = node;
   };
+  // @ts-expect-error TS6133: 'event' is declared but its value is never read.
   const onNodeDrag = (event: React.MouseEvent, node: Node) => {
     // console.log("Dragging:", node);
     const centerX = node.position.x + node.width! / 2;
@@ -46,7 +48,7 @@ function App() {
     // console.log("Potential target:", targetNode);
     setTarget(targetNode ?? null);
   };
-
+  // @ts-expect-error TS6133: 'event' is declared but its value is never read.
   const onNodeDragStop = (event: React.MouseEvent, node: Node) => {
     // const nodeColor = node.data.label;
     // const targetColor = target?.data.label;
@@ -81,14 +83,8 @@ function App() {
 
     // swapping edges to the shortest side
     console.log("New node id:", newNode.id);
-    // swapping edges to the shortest side
     let sourceId = newNode.id; // ID of the source node
     let targetId = "a"; // ID of the target node
-    // const { newSourceId, newTargetId } = shortestEdges(
-    //   nodes,
-    //   newNode,
-    //   targetId
-    // );
 
     const targetNode = nodes.find((node) => node.id === targetId);
 
@@ -151,7 +147,9 @@ function App() {
       onNodeDrag={onNodeDrag}
       onNodeDragStop={onNodeDragStop}
     >
-      <Panel position="top-left"> Create babies for my friends </Panel>
+      <Panel position="top-left" style={{ fontSize: "50px" }}>
+        Create babies for my friends
+      </Panel>
       <MiniMap />
       <NodeResizer />
     </ReactFlow>

@@ -6,8 +6,10 @@ export default function findImage(node_id: string) {
   }
   if (node_id.includes("b") && node_id.includes("d")) {
     // Randomly choose between 1 or 2
-    return `public/images/royga.${randomNumber}.png`;
+    return `/images/royga.${randomNumber}.png`;
   } else if (node_id.includes("c") && node_id.includes("e")) {
-    return `public/images/diana.${randomNumber}.png`;
+    return `/images/diana.${randomNumber}.png`;
+  } else if (node_id.includes("g") && node_id.includes("f")) {
+    return "We are still making this one.";
   } else return "This is called an affair.";
 }

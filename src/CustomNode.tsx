@@ -16,7 +16,7 @@ const CustomNode: React.FC<CustomNodeProps> = ({ data }) => {
   };
 
   const style = {
-    backgroundColor: data.color ? data.color : "bg-100", // Default color as fallback
+    backgroundColor: data.color ? data.color : "bg-white-100", // Default color as fallback
   };
 
   return (
