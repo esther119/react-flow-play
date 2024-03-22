@@ -1,4 +1,4 @@
-import React, { memo } from "react";
+import React, { memo, useState } from "react";
 import { Handle, Position } from "reactflow";
 
 interface CustomNodeProps {
@@ -11,9 +11,50 @@ interface CustomNodeProps {
 }
 
 const CustomNode: React.FC<CustomNodeProps> = ({ data }) => {
+  const [textInput, setTextInput] = useState("");
   const isImageUrl = (url: string) => {
     return /\.(jpg|jpeg|png|webp|avif|gif|svg)$/.test(url);
   };
+  const handleInputChange = (event: {
+    target: { value: React.SetStateAction<string> };
+  }) => {
+    setTextInput(event.target.value);
+  };
+
+  function sendEmail() {
+    console.log("email input", textInput);
+    // Get the input text value
+    // var text = document.getElementById("textInput").value;
+    // Check if the text is not empty
+    // if (textInput.trim() !== "") {
+    //   // You need to implement sending email functionality here
+    //   // This could involve making an HTTP request to a server-side script that handles sending the email
+    //   // For example, using fetch() or XMLHttpRequest()
+    //   // You would typically send the text as a parameter to the server-side script
+    //   // The server-side script would then use a mail service (e.g., Nodemailer for Node.js) to send the email
+    //   // Here's a simplified example of sending a POST request using fetch():
+    //   fetch("/send-email", {
+    //     method: "POST",
+    //     headers: {
+    //       "Content-Type": "application/json",
+    //     },
+    //     body: JSON.stringify({ text: text }),
+    //   })
+    //     .then((response) => {
+    //       if (response.ok) {
+    //         alert("Email sent successfully!");
+    //       } else {
+    //         alert("Failed to send email. Please try again later.");
+    //       }
+    //     })
+    //     .catch((error) => {
+    //       console.error("Error:", error);
+    //       alert("Failed to send email. Please try again later.");
+    //     });
+    // } else {
+    //   alert("Please enter some text before sending.");
+    // }
+  }
 
   const style = {
     backgroundColor: data.color ? data.color : "bg-white-100", // Default color as fallback
@@ -34,6 +75,14 @@ const CustomNode: React.FC<CustomNodeProps> = ({ data }) => {
 
           {isImageUrl(data.job) ? (
             <div className="flex justify-center items-center">
+              <input
+                type="text"
+                placeholder="Name the baby..."
+                className="border border-gray-300 p-2 rounded-md mr-2"
+                value={textInput}
+                onChange={handleInputChange}
+              />
+              <button onClick={sendEmail}>Send</button>
               <img src={data.job} alt={data.name} className="w-32 mx-auto" />
             </div>
           ) : (

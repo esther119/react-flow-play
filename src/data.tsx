@@ -20,7 +20,7 @@ const initNodes = [
   {
     id: "d",
     type: "custom",
-    data: { name: "??", job: "Chocolate uncle", emoji: "🌚", color: "" },
+    data: { name: "Ramen", job: "From Japan", emoji: "🍜", color: "" },
     position: { x: -150, y: -20 },
   },
   {
