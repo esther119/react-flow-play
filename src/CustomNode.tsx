@@ -26,34 +26,38 @@ const CustomNode: React.FC<CustomNodeProps> = ({ data }) => {
     // Get the input text value
     // var text = document.getElementById("textInput").value;
     // Check if the text is not empty
-    // if (textInput.trim() !== "") {
-    //   // You need to implement sending email functionality here
-    //   // This could involve making an HTTP request to a server-side script that handles sending the email
-    //   // For example, using fetch() or XMLHttpRequest()
-    //   // You would typically send the text as a parameter to the server-side script
-    //   // The server-side script would then use a mail service (e.g., Nodemailer for Node.js) to send the email
-    //   // Here's a simplified example of sending a POST request using fetch():
-    //   fetch("/send-email", {
-    //     method: "POST",
-    //     headers: {
-    //       "Content-Type": "application/json",
-    //     },
-    //     body: JSON.stringify({ text: text }),
-    //   })
-    //     .then((response) => {
-    //       if (response.ok) {
-    //         alert("Email sent successfully!");
-    //       } else {
-    //         alert("Failed to send email. Please try again later.");
-    //       }
-    //     })
-    //     .catch((error) => {
-    //       console.error("Error:", error);
-    //       alert("Failed to send email. Please try again later.");
-    //     });
-    // } else {
-    //   alert("Please enter some text before sending.");
-    // }
+    if (textInput.trim() !== "") {
+      // You need to implement sending email functionality here
+      // This could involve making an HTTP request to a server-side script that handles sending the email
+      // For example, using fetch() or XMLHttpRequest()
+      // You would typically send the text as a parameter to the server-side script
+      // The server-side script would then use a mail service (e.g., Nodemailer for Node.js) to send the email
+      // Here's a simplified example of sending a POST request using fetch():
+      fetch("http://localhost:3000/send-email", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          wishes: textInput,
+          emailAddress: "lampmaa22@gmail.com",
+          name: "teddy",
+        }),
+      })
+        .then((response) => {
+          if (response.ok) {
+            alert("Email sent successfully!");
+          } else {
+            alert("Failed to send email. Please try again later.");
+          }
+        })
+        .catch((error) => {
+          console.error("Error:", error);
+          alert("Failed to send email. Please try again later.");
+        });
+    } else {
+      alert("Please enter some text before sending.");
+    }
   }
 
   const style = {
