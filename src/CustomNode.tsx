@@ -83,6 +83,7 @@ const CustomNode: React.FC<CustomNodeProps> = ({ data }) => {
                 onChange={handleInputChange}
               />
               <button onClick={sendEmail}>Send</button>
+
               <img src={data.job} alt={data.name} className="w-32 mx-auto" />
             </div>
           ) : (
