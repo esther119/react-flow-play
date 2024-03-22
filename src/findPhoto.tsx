@@ -6,10 +6,13 @@ export default function findImage(node_id: string) {
   }
   if (node_id.includes("b") && node_id.includes("d")) {
     // Randomly choose between 1 or 2
-    return `/images/royga.${randomNumber}.png`;
+    return `/images/Tianhui/royga.${randomNumber}.png`;
   } else if (node_id.includes("c") && node_id.includes("e")) {
-    return `/images/diana.${randomNumber}.png`;
+    return `/images/Diana/diana.${randomNumber}.png`;
   } else if (node_id.includes("g") && node_id.includes("f")) {
-    return "We are still making this one.";
+    return `/images/Charlotte/${randomNumber}.png`;
+  } else if (node_id.includes("h") && node_id.includes("i")) {
+    const randomNumber = Math.floor(Math.random() * 25) + 1;
+    return `/images/Phuong/t${randomNumber}.png`;
   } else return "This is called an affair.";
 }

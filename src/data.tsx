@@ -41,6 +41,18 @@ const initNodes = [
     data: { name: "A white dude", job: "A white dude", emoji: "👋🏻", color: "" },
     position: { x: 750, y: 200 },
   },
+  {
+    id: "h",
+    type: "custom",
+    data: { name: "Phuong", job: "Startup founder", emoji: "👷🏻‍♀️", color: "" },
+    position: { x: 100, y: 200 },
+  },
+  {
+    id: "i",
+    type: "custom",
+    data: { name: "Tung", job: "Her co-founder", emoji: "🙌🏻", color: "" },
+    position: { x: -150, y: 200 },
+  },
 ];
 
 const initEdges = [
@@ -74,6 +86,16 @@ const initEdges = [
     id: "g-f",
     source: "f",
     target: "g",
+  },
+  {
+    id: "i-h",
+    source: "i",
+    target: "h",
+  },
+  {
+    id: "a-h",
+    source: "h",
+    target: "a",
   },
 ];
 
