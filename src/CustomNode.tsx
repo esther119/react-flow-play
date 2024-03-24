@@ -3,6 +3,7 @@ import { Handle, Position } from "reactflow";
 
 interface CustomNodeProps {
   data: {
+    email?: string[] | string;
     emoji: string;
     name: string;
     job: string;

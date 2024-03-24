@@ -109,7 +109,7 @@ function App() {
 
     // Update the edges state to include the new edge
     setEdges((eds) => [...eds, newEdge]);
-
+    console.log("mixing email is", node.data, target.data.email);
     // Set a timeout to change the new node's name after 5 seconds
     setTimeout(() => {
       setNodes((currentNodes) =>
@@ -122,6 +122,7 @@ function App() {
                 name: `Baby of ${node.data.name} and ${target?.data.name}`,
                 job: findImage(newNode.id),
                 emoji: "👶",
+                email: [node.data.email, target.data.email],
               },
             };
           }
