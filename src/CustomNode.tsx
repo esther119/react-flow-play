@@ -33,29 +33,30 @@ const CustomNode: React.FC<CustomNodeProps> = ({ data }) => {
 
   function sendEmail() {
     console.log("email input", textInput);
-    if (textInput.trim() !== "") {
-      fetch("http://localhost:3000/send-email", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          wishes: textInput,
-          emailAddress: "lampmaa22@gmail.com",
-          name: nameInput,
-        }),
-      })
-        .then((response) => {
-          if (response.ok) {
-            setSuccess(true);
-          } else {
-            alert("Failed to send email. Please try again later.");
-          }
+    if (textInput.trim() !== "" && data.email) {
+      data.email.forEach((emailAddress) => {
+        fetch("http://localhost:3000/send-email", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            wishes: textInput,
+            emailAddress: emailAddress,
+            name: nameInput,
+          }),
         })
-        .catch((error) => {
-          console.error("Error:", error);
-          alert("Failed to send email. Please try again later.");
-        });
+          .then((response) => {
+            if (!response.ok) {
+              throw new Error("Failed to send email.");
+            }
+          })
+          .catch((error) => {
+            console.error("Error:", error);
+            alert("Failed to send email. Please try again later.");
+          });
+      });
+      setSuccess(true); // Move this outside of the forEach loop if you want to set success after sending all emails.
     } else {
       alert("Please enter some text before sending.");
     }
@@ -120,7 +121,6 @@ const CustomNode: React.FC<CustomNodeProps> = ({ data }) => {
                 </p>
               )}
               <img src={data.job} alt={data.name} className="w-32 mx-auto" />
-              the email is: {data.email}
             </div>
           ) : (
             <div className="text-gray-500">{data.job}</div>

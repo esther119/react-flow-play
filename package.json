@@ -10,6 +10,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "dotenv": "^16.4.5",
     "express": "^4.19.1",
     "node-mailjet": "^6.0.5",
     "nodemailer": "^6.9.13",
@@ -32,5 +33,9 @@
     "tailwindcss": "^3.4.1",
     "typescript": "^5.3.3",
     "vite": "^5.0.12"
-  }
+  },
+  "description": "This template creates a very basic [React Flow](https://reactflow.dev) app with [Vite](https://vite.dev).",
+  "main": "postcss.config.js",
+  "keywords": [],
+  "author": ""
 }
