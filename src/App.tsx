@@ -109,7 +109,7 @@ function App() {
 
     // Update the edges state to include the new edge
     setEdges((eds) => [...eds, newEdge]);
-    console.log("mixing email is", node.data, target.data.email);
+    console.log("mixing email is", node.data.email, target.data.email);
     // Set a timeout to change the new node's name after 5 seconds
     setTimeout(() => {
       setNodes((currentNodes) =>

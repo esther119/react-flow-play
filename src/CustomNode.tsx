@@ -3,7 +3,7 @@ import { Handle, Position } from "reactflow";
 
 interface CustomNodeProps {
   data: {
-    email?: string[] | string;
+    email?: string[];
     emoji: string;
     name: string;
     job: string;
@@ -120,6 +120,7 @@ const CustomNode: React.FC<CustomNodeProps> = ({ data }) => {
                 </p>
               )}
               <img src={data.job} alt={data.name} className="w-32 mx-auto" />
+              the email is: {data.email}
             </div>
           ) : (
             <div className="text-gray-500">{data.job}</div>
