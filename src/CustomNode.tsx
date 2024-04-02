@@ -32,10 +32,14 @@ const CustomNode: React.FC<CustomNodeProps> = ({ data }) => {
   };
 
   function sendEmail() {
+    const backendUrl = "https://server-tan-gamma.vercel.app/";
     console.log("email input", textInput);
     if (textInput.trim() !== "" && data.email) {
+      let successCount = 0; // Counter for successful email sends
+      const totalEmails = data.email.length; // Total number of emails to be sent
+
       data.email.forEach((emailAddress) => {
-        fetch("http://localhost:3000/send-email", {
+        fetch(`${backendUrl}send-email`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -50,13 +54,17 @@ const CustomNode: React.FC<CustomNodeProps> = ({ data }) => {
             if (!response.ok) {
               throw new Error("Failed to send email.");
             }
+            successCount++; // Increment the success count upon successful email send
+            if (successCount === totalEmails) {
+              // If all emails are successfully sent, set success
+              setSuccess(true);
+            }
           })
           .catch((error) => {
             console.error("Error:", error);
             alert("Failed to send email. Please try again later.");
           });
       });
-      setSuccess(true); // Move this outside of the forEach loop if you want to set success after sending all emails.
     } else {
       alert("Please enter some text before sending.");
     }
