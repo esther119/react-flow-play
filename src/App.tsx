@@ -67,6 +67,7 @@ function App() {
         job: "",
         emoji: "🧪",
         color: getRandomLightColor(),
+        email: [""],
       },
     };
     console.log("New node:", newNode);
